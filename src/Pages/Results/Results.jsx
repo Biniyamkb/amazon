@@ -6,8 +6,10 @@ import { productUrl } from "../../APi/endPoints";
 import classes from "../../Components/Category/category.module.css";
 import { MdFirstPage } from "react-icons/md";
 import ProductCard from "../../Components/Product/ProductCard";
+import Loader from "../../Components/Loader/Loader";
 function Results() {
   const [results, setResults] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
   const { categoryName } = useParams();
 
   useEffect(() => {
@@ -15,25 +17,31 @@ function Results() {
       .get(`${productUrl}category/${categoryName}`)
       .then((res) => {
         setResults(res.data);
+        setisLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        isLoading(false);
       });
   }, []);
 
   return (
     <LayOut>
-      <section>
-        <h1 style={{ padding: "30px" }}>Results</h1>
-        <p style={{ padding: "30px" }}>Category/ {categoryName}</p>
-        <hr />
-        <div className={classes.products_container}>
-          {results?.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-          <div />
-        </div>
-      </section>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <section>
+          <h1 style={{ padding: "30px" }}>Results</h1>
+          <p style={{ padding: "30px" }}>Category/ {categoryName}</p>
+          <hr />
+          <div className={classes.products_container}>
+            {results?.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+            <div />
+          </div>
+        </section>
+      )}
     </LayOut>
   );
 }
