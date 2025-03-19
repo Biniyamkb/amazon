@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
 import { BsCart } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
-
 import { MdOutlineLocationOn } from "react-icons/md";
 import LowerHeader from "./LowerHeader";
+import { DataContext } from "../DataProvider/DataProvider";
 const Header = () => {
+  const [{ basket }, dispatch] = useContext(DataContext);
+
   return (
     <>
       <section>
@@ -64,7 +66,7 @@ const Header = () => {
             <Link to="/cart" className={classes.cart}>
               <BsCart size={35} />
               {/* icon */}
-              <span>0</span>
+              <span>{basket.length}</span>
             </Link>
           </div>
         </div>
