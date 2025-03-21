@@ -5,12 +5,14 @@ import ProductCard from "../../Components/Product/ProductCard";
 import CurrencyFormat from "../../Components/CurrencyFormater/CurrencyFormat";
 import { Link } from "react-router-dom";
 import classes from "./Cart.module.css";
+import { listItemClasses } from "@mui/material";
 function Cart() {
   const [{ basket, user }, dispatch] = useContext(DataContext);
 
   const total = basket.reduce((amount, item) => {
-    return item.price + amount;
+    return item.price * item.amount + amount;
   }, 0);
+  console.log(basket);
 
   return (
     <LayOut>
@@ -18,7 +20,8 @@ function Cart() {
         <div className={classes.cart_container}>
           <h2>Hello</h2>
           <h3>Your shopping basket</h3>
-          <hr />
+          <hr  />
+          <div className={classes.cartProduct}>
           {basket?.length == 0 ? (
             <p>Opps ! no item in your Cart</p>
           ) : (
@@ -34,6 +37,7 @@ function Cart() {
               );
             })
           )}
+          </div>
         </div>
 
         {basket?.length !== 0 && (
