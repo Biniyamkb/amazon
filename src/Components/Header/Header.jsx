@@ -6,8 +6,9 @@ import { CiSearch } from "react-icons/ci";
 import { MdOutlineLocationOn } from "react-icons/md";
 import LowerHeader from "./LowerHeader";
 import { DataContext } from "../DataProvider/DataProvider";
+import { auth } from "../../Utility/firebase";
 const Header = () => {
-  const [{ basket }, dispatch] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext);
   // const totalItem = basket?.reducer((amount, item) => {
   //   return item.amount + amount;
   // }, 0);
@@ -59,9 +60,26 @@ const Header = () => {
               </select>
             </Link>
             {/* three components */}
-            <Link to="/auth">
-              <p>Sign In</p>
-              <span>Account & Lists</span>
+            <Link to={!user && "/auth"}>
+              <div>
+                {user ? (
+                  <>
+                    <p>Hello {user?.email?.split("@")[0]} </p>
+                    <span> Sign Out</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello, Sign In</p>
+                    <span
+                      onClick={() => {
+                        auth.signOut();
+                      }}
+                    >
+                      Account & Lists
+                    </span>
+                  </>
+                )}
+              </div>
             </Link>
             {/* orders */}
             <Link to="/orders">
