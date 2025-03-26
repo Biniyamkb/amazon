@@ -81,7 +81,7 @@ function Auth() {
               fontWeight: "bold",
             }}
           >
-            {navStateData?.state?.msg}
+            {navStateData.state.msg}
           </small>
         )}
         <form action="">

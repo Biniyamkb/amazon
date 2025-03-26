@@ -35,19 +35,11 @@ function Routering() {
           }
         />
 
-        <Route
-          path="/orders"
-          element={
-            <ProtectedRoute
-              msg={"you must log in to access your orders"}
-              redirect={"/orders"}
-            >
-              <Elements stripe={stripePromise}>
-                <Orders />
-              </Elements>
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/orders" element={
+          
+          
+          
+          <Orders />} />
         <Route path="/category/:categoryName" element={<Results />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />

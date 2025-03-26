@@ -21,7 +21,6 @@ function Auth() {
   const [{ user }, dispatch] = useContext(DataContext);
   const navigate = useNavigate();
   const navStateData = useLocation();
-  console.log(navStateData);
 
   const authHandler = async (e) => {
     e.preventDefault();
@@ -36,7 +35,7 @@ function Auth() {
             user: userInfo.user,
           });
           setLoading({ ...loading, signIn: false });
-          navigate(navStateData?.state?.redirect || "/");
+          navigate("/");
         })
         .catch((err) => {
           setError(err.message);
@@ -51,7 +50,7 @@ function Auth() {
             user: userInfo.user,
           });
           setLoading({ ...loading, signUP: false });
-          navigate(navStateData?.state?.redirect || "/");
+          navigate("/");
         })
         .catch((err) => {
           setError(err.message);
@@ -72,18 +71,6 @@ function Auth() {
       {/* form */}
       <div className={classes.login_container}>
         <h1>Sign In</h1>
-        {navStateData?.state?.msg && (
-          <small
-            style={{
-              padding: "5px",
-              textAlign: "center",
-              color: "red",
-              fontWeight: "bold",
-            }}
-          >
-            {navStateData?.state?.msg}
-          </small>
-        )}
         <form action="">
           <div>
             <label htmlFor="email">Email</label>

@@ -72,7 +72,7 @@ function Auth() {
       {/* form */}
       <div className={classes.login_container}>
         <h1>Sign In</h1>
-        {navStateData?.state?.msg && (
+        {navStateData.state.msg && (
           <small
             style={{
               padding: "5px",
@@ -81,7 +81,7 @@ function Auth() {
               fontWeight: "bold",
             }}
           >
-            {navStateData?.state?.msg}
+            {navStateData.state.msg}
           </small>
         )}
         <form action="">

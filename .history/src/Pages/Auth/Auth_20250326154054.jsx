@@ -72,18 +72,17 @@ function Auth() {
       {/* form */}
       <div className={classes.login_container}>
         <h1>Sign In</h1>
-        {navStateData?.state?.msg && (
-          <small
-            style={{
-              padding: "5px",
-              textAlign: "center",
-              color: "red",
-              fontWeight: "bold",
-            }}
-          >
-            {navStateData?.state?.msg}
+        {navStateData.state.msg&&(
+          <small style={{
+            padding:"5px",
+            
+          }}>
+            {navStateData.state.msg}
           </small>
-        )}
+        )
+
+
+        }
         <form action="">
           <div>
             <label htmlFor="email">Email</label>
